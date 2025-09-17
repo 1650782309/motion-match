@@ -2534,6 +2534,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Humanoid_F Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 9220857281260631072, guid: 2b976f3e54e6f6e4a86b9fdde37633fe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

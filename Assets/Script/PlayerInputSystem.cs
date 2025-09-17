@@ -77,7 +77,7 @@ public class PlayerInputSystem : MonoBehaviour, PlayerInputAction.IPlayerActions
 
     public void OnRun(InputAction.CallbackContext context)
     {
-        isRunPressed = context.performed;
+        isRunPressed = context.performed || context.started;
     }
 
     public void OnCrouch(InputAction.CallbackContext context)
