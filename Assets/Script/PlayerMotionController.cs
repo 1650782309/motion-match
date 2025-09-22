@@ -2,6 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MxM;
+using System;
+using System.ComponentModel;
+using System.Reflection;
+
+public static class CalibrationDataState
+{
+    public const string General = "General";
+    public const string Strafe = "Strafe";
+}
+
+public static class RequiredTag
+{
+    public const string Strafe = "Strafe";
+    public const string General = "General";
+}
 
 public class PlayerMotionController : MonoBehaviour
 {
@@ -11,16 +26,28 @@ public class PlayerMotionController : MonoBehaviour
     [SerializeField] public MxMAnimator mxmAnimator;
     [SerializeField] public Transform cameraTransform;
 
-    [Header("移动设置")]
-    [SerializeField] private float walkSpeed = 4.3f;
-    [SerializeField] private float runSpeed = 6.7f;
+    [Header("Walk设置")]
+    [SerializeField] private float walkSpeed = 2f;
     [SerializeField] private float walkPositionBias = 10f;
-    [SerializeField] private float runPositionBias = 6f;
     [SerializeField] private float walkDirectionBias = 10f;
+    [SerializeField] private float walkWarpRate = 90;
+
+    [Header("Run设置")]
+    [SerializeField] private float runSpeed = 5f;
+    [SerializeField] private float runPositionBias = 6f;
     [SerializeField] private float runDirectionBias = 6f;
+    [SerializeField] private float runWarpRate = 90;
+
+    [Header("Strafe设置")]
+    [SerializeField] private float strafeSpeed = 2f;
+    [SerializeField] private float strafePositionBias = 10f;
+    [SerializeField] private float strafeDirectionBias = 10f;
+    [SerializeField] private float strafeWarpRate = 180f;
+
 
     [Header("输入配置文件")]
-    [SerializeField] private MxMInputProfile universalInputProfile; // 一个配置文件处理所有状态
+    [SerializeField] private MxMInputProfile generalInputProfile;
+    [SerializeField] private MxMInputProfile strafeInputProfile;
 
     [Header("状态")]
     [SerializeField] private bool isRunning = false;
@@ -46,11 +73,13 @@ public class PlayerMotionController : MonoBehaviour
             trajectoryGenerator.RelativeCameraTransform = cameraTransform;
         }
         // 设置通用输入配置文件
-        if (trajectoryGenerator != null && universalInputProfile != null)
+        if (trajectoryGenerator != null && generalInputProfile != null)
         {
-            trajectoryGenerator.InputProfile = universalInputProfile;
+            trajectoryGenerator.InputProfile = generalInputProfile;
         }
 
+        //初始化tag
+        // mxmAnimator.AddRequiredTag(RequiredTag.General);
     }
 
     private void Update()
@@ -60,8 +89,66 @@ public class PlayerMotionController : MonoBehaviour
         // 处理奔跑/行走切换
         HandleRunToggle();
 
+        //处理strafe切换
+        HandleStrafeToggle();
+
+        // 处理跳跃
+        HandleJump();
+
         // 将输入传递给轨迹生成器
         UpdateTrajectoryInput();
+
+        //UserTag检查
+        CheckUserTag();
+    }
+
+    private void HandleStrafeToggle()
+    {
+        if (playerInputSystem.isAimPressed)
+        {
+            // 切换到Strafe模式
+            trajectoryGenerator.TrajectoryMode = ETrajectoryMoveMode.Strafe;
+            mxmAnimator.SetCalibrationData(CalibrationDataState.Strafe);
+            mxmAnimator.AddRequiredTag(RequiredTag.Strafe);
+            // mxmAnimator.SetFavourCurrentPose(true, 0.95f);
+            // 如果没有移动输入，降低匹配权重，让系统选择更合适的动画
+            if (playerInputSystem.moveInput.magnitude < 0.1f)
+            {
+                mxmAnimator.SetFavourCurrentPose(true, 0.8f); // 降低权重
+            }
+            else
+            {
+                mxmAnimator.SetFavourCurrentPose(false, 1.0f); // 正常匹配
+            }
+        }
+        else
+        {
+            // 切换回正常模式
+            trajectoryGenerator.TrajectoryMode = ETrajectoryMoveMode.Normal;
+            mxmAnimator.RemoveRequiredTag(RequiredTag.Strafe);
+            // mxmAnimator.AddRequiredTag(RequiredTag.General);
+            // mxmAnimator.SetFavourCurrentPose(false, 1.0f);
+        }
+    }
+
+    private void HandleJump()
+    {
+        if (playerInputSystem.isJumpPressed)
+        {
+            Debug.Log("Jump");
+        }
+    }
+
+    private void CheckUserTag()
+    {
+        if (mxmAnimator.QueryUserTag("DisableGravity"))
+        {
+            Debug.Log("DisableGravity");
+        }
+        if (mxmAnimator.QueryUserTag("DisableCollision"))
+        {
+            Debug.Log("DisableCollision");
+        }
     }
 
     private void HandleRunToggle()
@@ -84,6 +171,9 @@ public class PlayerMotionController : MonoBehaviour
         trajectoryGenerator.MaxSpeed = walkSpeed;
         trajectoryGenerator.PositionBias = walkPositionBias;
         trajectoryGenerator.DirectionBias = walkDirectionBias;
+        mxmAnimator.AngularErrorWarpMethod = EAngularErrorWarpMethod.CurrentHeading;
+        mxmAnimator.AngularErrorWarpRate = walkWarpRate;
+
     }
 
     private void SetRunMode()
@@ -92,6 +182,8 @@ public class PlayerMotionController : MonoBehaviour
         trajectoryGenerator.MaxSpeed = runSpeed;
         trajectoryGenerator.PositionBias = runPositionBias;
         trajectoryGenerator.DirectionBias = runDirectionBias;
+        mxmAnimator.AngularErrorWarpRate = runWarpRate;
+        mxmAnimator.AngularErrorWarpMethod = EAngularErrorWarpMethod.CurrentHeading;
     }
 
     private void UpdateTrajectoryInput()
