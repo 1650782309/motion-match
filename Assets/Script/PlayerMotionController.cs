@@ -30,24 +30,25 @@ public class PlayerMotionController : MonoBehaviour
     [SerializeField] private float walkSpeed = 2f;
     [SerializeField] private float walkPositionBias = 10f;
     [SerializeField] private float walkDirectionBias = 10f;
-    [SerializeField] private float walkWarpRate = 90;
 
     [Header("Run设置")]
     [SerializeField] private float runSpeed = 5f;
     [SerializeField] private float runPositionBias = 6f;
     [SerializeField] private float runDirectionBias = 6f;
-    [SerializeField] private float runWarpRate = 90;
 
     [Header("Strafe设置")]
     [SerializeField] private float strafeSpeed = 2f;
     [SerializeField] private float strafePositionBias = 10f;
     [SerializeField] private float strafeDirectionBias = 10f;
-    [SerializeField] private float strafeWarpRate = 180f;
 
 
     [Header("输入配置文件")]
     [SerializeField] private MxMInputProfile generalInputProfile;
     [SerializeField] private MxMInputProfile strafeInputProfile;
+
+    [Header("Warp模块")]
+    [SerializeField] private WarpModule generalWarpModule;
+    [SerializeField] private WarpModule strafeWarpModule;
 
     [Header("状态")]
     [SerializeField] private bool isRunning = false;
@@ -79,7 +80,7 @@ public class PlayerMotionController : MonoBehaviour
         }
 
         //初始化tag
-        // mxmAnimator.AddRequiredTag(RequiredTag.General);
+        mxmAnimator.AddRequiredTag(RequiredTag.General);
     }
 
     private void Update()
@@ -109,8 +110,14 @@ public class PlayerMotionController : MonoBehaviour
             // 切换到Strafe模式
             trajectoryGenerator.TrajectoryMode = ETrajectoryMoveMode.Strafe;
             mxmAnimator.SetCalibrationData(CalibrationDataState.Strafe);
+            mxmAnimator.RemoveRequiredTag(RequiredTag.General);
             mxmAnimator.AddRequiredTag(RequiredTag.Strafe);
-            // mxmAnimator.SetFavourCurrentPose(true, 0.95f);
+            mxmAnimator.SetWarpOverride(strafeWarpModule);
+            if (trajectoryGenerator != null && strafeInputProfile != null)
+            {
+                trajectoryGenerator.InputProfile = strafeInputProfile;
+            }
+
             // 如果没有移动输入，降低匹配权重，让系统选择更合适的动画
             if (playerInputSystem.moveInput.magnitude < 0.1f)
             {
@@ -126,6 +133,12 @@ public class PlayerMotionController : MonoBehaviour
             // 切换回正常模式
             trajectoryGenerator.TrajectoryMode = ETrajectoryMoveMode.Normal;
             mxmAnimator.RemoveRequiredTag(RequiredTag.Strafe);
+            mxmAnimator.AddRequiredTag(RequiredTag.General);
+            mxmAnimator.SetWarpOverride(generalWarpModule);
+            if (trajectoryGenerator != null && generalInputProfile != null)
+            {
+                trajectoryGenerator.InputProfile = generalInputProfile;
+            }
             // mxmAnimator.AddRequiredTag(RequiredTag.General);
             // mxmAnimator.SetFavourCurrentPose(false, 1.0f);
         }
@@ -172,7 +185,6 @@ public class PlayerMotionController : MonoBehaviour
         trajectoryGenerator.PositionBias = walkPositionBias;
         trajectoryGenerator.DirectionBias = walkDirectionBias;
         mxmAnimator.AngularErrorWarpMethod = EAngularErrorWarpMethod.CurrentHeading;
-        mxmAnimator.AngularErrorWarpRate = walkWarpRate;
 
     }
 
@@ -182,7 +194,6 @@ public class PlayerMotionController : MonoBehaviour
         trajectoryGenerator.MaxSpeed = runSpeed;
         trajectoryGenerator.PositionBias = runPositionBias;
         trajectoryGenerator.DirectionBias = runDirectionBias;
-        mxmAnimator.AngularErrorWarpRate = runWarpRate;
         mxmAnimator.AngularErrorWarpMethod = EAngularErrorWarpMethod.CurrentHeading;
     }
 

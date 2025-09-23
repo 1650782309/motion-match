@@ -22,7 +22,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -293,7 +293,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -567,7 +567,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 1
   FlattenTrajectory: 0
   RuntimeSplicing: 0
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -703,7 +703,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -839,7 +839,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -1114,7 +1114,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -1250,7 +1250,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -1386,7 +1386,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -1522,7 +1522,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -1662,7 +1662,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -1797,7 +1797,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 1
   FlattenTrajectory: 0
   RuntimeSplicing: 0
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -2114,7 +2114,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -2520,7 +2520,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -2656,7 +2656,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -2791,7 +2791,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 1
   FlattenTrajectory: 0
   RuntimeSplicing: 0
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -3332,7 +3332,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -3644,7 +3644,7 @@ MonoBehaviour:
     Extrapolate_default: 1
     FlattenTrajectory_default: 0
     RuntimeSplicing_default: 0
-    RequireTags_default: 0
+    RequireTags_default: 16
     FavourTags_default: 1
   - CatagoryName: Run
     Composites:
@@ -3672,7 +3672,7 @@ MonoBehaviour:
     Extrapolate_default: 0
     FlattenTrajectory_default: 0
     RuntimeSplicing_default: 1
-    RequireTags_default: 0
+    RequireTags_default: 16
     FavourTags_default: 0
   - CatagoryName: Strafe
     Composites:
@@ -3881,7 +3881,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -4017,7 +4017,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -4153,7 +4153,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -4651,7 +4651,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -4787,7 +4787,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -4923,7 +4923,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 0
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -5739,7 +5739,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -5874,7 +5874,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 1
   FlattenTrajectory: 0
   RuntimeSplicing: 0
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -6009,7 +6009,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 1
   FlattenTrajectory: 1
   RuntimeSplicing: 0
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -6280,7 +6280,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 0
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -6416,7 +6416,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -6552,7 +6552,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -6688,7 +6688,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 0
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -6824,7 +6824,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -7233,7 +7233,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 1
   FlattenTrajectory: 1
   RuntimeSplicing: 0
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -7504,7 +7504,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -7640,7 +7640,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -7776,7 +7776,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -8046,7 +8046,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 1
   FlattenTrajectory: 1
   RuntimeSplicing: 0
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -8182,7 +8182,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -8318,7 +8318,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 0
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -8589,7 +8589,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -8860,7 +8860,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 0
   FlattenTrajectory: 0
   RuntimeSplicing: 1
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []
@@ -8995,7 +8995,7 @@ MonoBehaviour:
   ExtrapolateTrajectory: 1
   FlattenTrajectory: 1
   RuntimeSplicing: 0
-  GlobalTags: 0
+  GlobalTags: 16
   GlobalFavourTags: 0
   TagTracks: []
   FavourTagTracks: []

@@ -1451,12 +1451,18 @@ MonoBehaviour:
   mxmAnimator: {fileID: 0}
   cameraTransform: {fileID: 963194228}
   walkSpeed: 2
-  runSpeed: 5.5
   walkPositionBias: 9
-  runPositionBias: 10
   walkDirectionBias: 9
+  runSpeed: 5.5
+  runPositionBias: 10
   runDirectionBias: 10
-  universalInputProfile: {fileID: 11400000, guid: 2f4363231a5696a45af92c58f6954b4b, type: 2}
+  strafeSpeed: 2
+  strafePositionBias: 10
+  strafeDirectionBias: 10
+  generalInputProfile: {fileID: 11400000, guid: f719e4bd33db06e46a909c0bbbed491c, type: 2}
+  strafeInputProfile: {fileID: 11400000, guid: 2f4363231a5696a45af92c58f6954b4b, type: 2}
+  generalWarpModule: {fileID: 11400000, guid: e5f4ae3b56500824d993fe89a0562fc1, type: 2}
+  strafeWarpModule: {fileID: 11400000, guid: 08fd7c4652faa8f4d85d7bab0b4ca7e8, type: 2}
   isRunning: 0
 --- !u!1001 &8763019135802256794
 PrefabInstance:
