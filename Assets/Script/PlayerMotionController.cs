@@ -53,6 +53,10 @@ public class PlayerMotionController : MonoBehaviour
     [Header("状态")]
     [SerializeField] private bool isRunning = false;
 
+    [Header("动画事件Def")]
+    [SerializeField] private MxMEventDefinition slideEventDef;
+    [SerializeField] private MxMEventDefinition jumpEventDef;
+
     private void Start()
     {
         // 自动获取组件引用
@@ -101,6 +105,17 @@ public class PlayerMotionController : MonoBehaviour
 
         //UserTag检查
         CheckUserTag();
+
+        //处理Slide
+        slideEvent();
+    }
+
+    private void slideEvent()
+    {
+        if (playerInputSystem.isCrouchPressed)
+        {
+            mxmAnimator.BeginEvent(slideEventDef);
+        }
     }
 
     private void HandleStrafeToggle()
