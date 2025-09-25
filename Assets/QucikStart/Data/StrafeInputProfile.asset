@@ -15,6 +15,6 @@ MonoBehaviour:
   m_viableInputs:
   - minInput: 0
     maxInput: 1
-    viableInput: 1.02
+    viableInput: 1
     posBias: 1
     dirBias: 1

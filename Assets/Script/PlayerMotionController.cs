@@ -118,15 +118,15 @@ public class PlayerMotionController : MonoBehaviour
                 trajectoryGenerator.InputProfile = strafeInputProfile;
             }
 
-            // 如果没有移动输入，降低匹配权重，让系统选择更合适的动画
-            if (playerInputSystem.moveInput.magnitude < 0.1f)
-            {
-                mxmAnimator.SetFavourCurrentPose(true, 0.8f); // 降低权重
-            }
-            else
-            {
-                mxmAnimator.SetFavourCurrentPose(false, 1.0f); // 正常匹配
-            }
+            // // 如果没有移动输入，降低匹配权重，让系统选择更合适的动画
+            // if (playerInputSystem.moveInput.magnitude < 0.1f)
+            // {
+            //     mxmAnimator.SetFavourCurrentPose(true, 0.8f); // 降低权重
+            // }
+            // else
+            // {
+            //     mxmAnimator.SetFavourCurrentPose(false, 1.0f); // 正常匹配
+            // }
         }
         else
         {

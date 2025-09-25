@@ -152,10 +152,10 @@ MonoBehaviour:
   PrimaryClip: {fileID: 6785046472699525978, guid: 546902129a1f7fc43bce09d80de7ed24, type: 3}
   BeforeClips: []
   AfterClips: []
-  Looping: 1
+  Looping: 0
   IgnoreEdges: 0
   ExtrapolateTrajectory: 1
-  FlattenTrajectory: 1
+  FlattenTrajectory: 0
   RuntimeSplicing: 0
   GlobalTags: 8
   GlobalFavourTags: 0
@@ -430,7 +430,7 @@ MonoBehaviour:
   Looping: 0
   IgnoreEdges: 0
   ExtrapolateTrajectory: 1
-  FlattenTrajectory: 1
+  FlattenTrajectory: 0
   RuntimeSplicing: 0
   GlobalTags: 8
   GlobalFavourTags: 0
@@ -2244,10 +2244,10 @@ MonoBehaviour:
   PrimaryClip: {fileID: 3035356834667824861, guid: fde4de65d56af1745af1f95b694c8aae, type: 3}
   BeforeClips: []
   AfterClips: []
-  Looping: 1
+  Looping: 0
   IgnoreEdges: 0
   ExtrapolateTrajectory: 1
-  FlattenTrajectory: 1
+  FlattenTrajectory: 0
   RuntimeSplicing: 0
   GlobalTags: 8
   GlobalFavourTags: 0
@@ -2921,10 +2921,10 @@ MonoBehaviour:
   PrimaryClip: {fileID: -4043750481635379581, guid: c2307d996f5b54e45817c958dad6d63d, type: 3}
   BeforeClips: []
   AfterClips: []
-  Looping: 1
+  Looping: 0
   IgnoreEdges: 0
   ExtrapolateTrajectory: 1
-  FlattenTrajectory: 1
+  FlattenTrajectory: 0
   RuntimeSplicing: 0
   GlobalTags: 8
   GlobalFavourTags: 0
@@ -3191,10 +3191,10 @@ MonoBehaviour:
   PrimaryClip: {fileID: -8825764257284509520, guid: 86eafd37562130e48832083d1b3974f3, type: 3}
   BeforeClips: []
   AfterClips: []
-  Looping: 1
+  Looping: 0
   IgnoreEdges: 0
   ExtrapolateTrajectory: 1
-  FlattenTrajectory: 1
+  FlattenTrajectory: 0
   RuntimeSplicing: 0
   GlobalTags: 8
   GlobalFavourTags: 0
@@ -3469,6 +3469,150 @@ MonoBehaviour:
   RuntimePlaybackSpeed: 1
   m_targetPreProcessData: {fileID: 11400000}
   m_targetAnimModule: {fileID: 0}
+--- !u!114 &-207372722528522114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2c4d1acab068a24b9d34a3bbfc801c0, type: 3}
+  m_Name: Idle
+  m_EditorClassIdentifier: 
+  m_blendSpaceName: 
+  m_clips:
+  - {fileID: 1827226128182048838, guid: 0660b16472b526b4fb30b5d695f95903, type: 3}
+  - {fileID: -4043750481635379581, guid: c2307d996f5b54e45817c958dad6d63d, type: 3}
+  - {fileID: 2821294066042242215, guid: 66306f4f658418247a7f2f9efaa385e3, type: 3}
+  - {fileID: 3035356834667824861, guid: fde4de65d56af1745af1f95b694c8aae, type: 3}
+  - {fileID: 6785046472699525978, guid: 546902129a1f7fc43bce09d80de7ed24, type: 3}
+  m_positions:
+  - {x: 0, y: -0}
+  - {x: -0, y: -1}
+  - {x: 0, y: 1}
+  - {x: -1, y: 0}
+  - {x: 1, y: -0}
+  m_magnitude: {x: 1, y: 1}
+  m_smoothing: {x: 0.25, y: 0.25}
+  m_normalizeTime: 1
+  m_scatterSpace: 0
+  m_scatterSpacing: {x: 0.05, y: 1}
+  m_scatterPositions: []
+  GlobalTags: 8
+  GlobalFavourTags: 0
+  TagTracks: []
+  FavourTagTracks: []
+  LeftFootStepTrack:
+    m_trackId: 0
+    m_trackName: Footstep Left
+    m_clipLength: 3.0000002
+    m_tagPositions: []
+    m_footStepData: []
+  RightFootStepTrack:
+    m_trackId: 1
+    m_trackName: Footstep Right
+    m_clipLength: 3.0000002
+    m_tagPositions: []
+    m_footStepData: []
+  WarpPositionTrack:
+    m_trackId: 2
+    m_trackName: Disable Warp (Position)
+    m_clipLength: 3.0000002
+    m_tagPositions: []
+  WarpRotationTrack:
+    m_trackId: 3
+    m_trackName: Disable Warp (Rotation)
+    m_clipLength: 3.0000002
+    m_tagPositions: []
+  EnableRootMotionTrack:
+    m_trackId: 4
+    m_trackName: Enable Root Motion
+    m_clipLength: 3.0000002
+    m_tagPositions: []
+  PoseFavourTrack:
+    m_trackId: 5
+    m_trackName: Pose Favour
+    m_clipLength: 3.0000002
+    m_tagPositions: []
+    m_values: []
+    m_defaultValue: 1
+  WarpTrajLatTrack:
+    m_trackId: 6
+    m_trackName: Disable Trajectory Warp (Angular)
+    m_clipLength: 3.0000002
+    m_tagPositions: []
+  WarpTrajLongTrack:
+    m_trackId: 7
+    m_trackName: Disable Trajectory Warp (Long)
+    m_clipLength: 3.0000002
+    m_tagPositions: []
+  UserBoolTracks: []
+  Curves: []
+  RuntimePlaybackSpeed: 1
+  UseSpeedMods: 0
+  MotionModifier:
+    MotionSections:
+    - MotionSectionId: 0
+      MotionPresetId: 0
+      ModType: 0
+      SmoothType: 0
+      RawModValue: 1
+      UsePresets: 1
+      EndTime: 3.0000002
+  GeneratedClips: []
+  GeneratedTagTracks: []
+  GeneratedFavourTagTracks: []
+  GeneratedEvents: []
+  GeneratedLeftFootStepTrack:
+    m_trackId: 0
+    m_trackName: 
+    m_clipLength: 0
+    m_tagPositions: []
+    m_footStepData: []
+  GeneratedRightFootStepTrack:
+    m_trackId: 0
+    m_trackName: 
+    m_clipLength: 0
+    m_tagPositions: []
+    m_footStepData: []
+  GeneratedWarpPositionTrack:
+    m_trackId: 0
+    m_trackName: 
+    m_clipLength: 0
+    m_tagPositions: []
+  GeneratedWarpRotationTrack:
+    m_trackId: 0
+    m_trackName: 
+    m_clipLength: 0
+    m_tagPositions: []
+  GeneratedEnableRootMotionTrack:
+    m_trackId: 0
+    m_trackName: 
+    m_clipLength: 0
+    m_tagPositions: []
+  GeneratedPoseFavourTrack:
+    m_trackId: 0
+    m_trackName: 
+    m_clipLength: 0
+    m_tagPositions: []
+    m_values: []
+    m_defaultValue: 0
+  GeneratedWarpTrajLatTrack:
+    m_trackId: 0
+    m_trackName: 
+    m_clipLength: 0
+    m_tagPositions: []
+  GeneratedWarpTrajLongTrack:
+    m_trackId: 0
+    m_trackName: 
+    m_clipLength: 0
+    m_tagPositions: []
+  GeneratedUserBoolTracks: []
+  m_targetPreProcessData: {fileID: 11400000}
+  m_targetAnimModule: {fileID: 0}
+  m_targetPrefab: {fileID: 919132149155446097, guid: f5b9e4759016d1c4e9c470e0f1d48847, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3690,7 +3834,7 @@ MonoBehaviour:
     - {fileID: -6972903693550500372}
     IgnoreEdges_default: 0
     Extrapolate_default: 1
-    FlattenTrajectory_default: 1
+    FlattenTrajectory_default: 0
     RuntimeSplicing_default: 0
     RequireTags_default: 8
     FavourTags_default: 0
@@ -3706,6 +3850,7 @@ MonoBehaviour:
   - {fileID: 9006083666034095452}
   - {fileID: -2992807451035644135}
   - {fileID: 2283819826641648991}
+  - {fileID: -207372722528522114}
   m_motionTimingPresets: {fileID: 0}
   m_embedAnimClipsInAnimData: 0
   m_generateModifiedClipsOnPreProcess: 0
@@ -3740,10 +3885,10 @@ MonoBehaviour:
   PrimaryClip: {fileID: 2821294066042242215, guid: 66306f4f658418247a7f2f9efaa385e3, type: 3}
   BeforeClips: []
   AfterClips: []
-  Looping: 1
+  Looping: 0
   IgnoreEdges: 0
   ExtrapolateTrajectory: 1
-  FlattenTrajectory: 1
+  FlattenTrajectory: 0
   RuntimeSplicing: 0
   GlobalTags: 8
   GlobalFavourTags: 0
@@ -4285,7 +4430,7 @@ MonoBehaviour:
   - {fileID: 904551039516720066, guid: c3f0e1c8a2843a74cb38c5dd9bf630dc, type: 3}
   - {fileID: -3826477286391756377, guid: 83d98935bcd25d346b775b96b3e53f8e, type: 3}
   m_positions:
-  - {x: 0, y: 0}
+  - {x: 0, y: -0}
   - {x: -1, y: -0}
   - {x: 1, y: 0}
   m_magnitude: {x: 1, y: 1}
@@ -5466,7 +5611,7 @@ MonoBehaviour:
   Looping: 0
   IgnoreEdges: 0
   ExtrapolateTrajectory: 1
-  FlattenTrajectory: 1
+  FlattenTrajectory: 0
   RuntimeSplicing: 0
   GlobalTags: 8
   GlobalFavourTags: 0
@@ -5598,10 +5743,10 @@ MonoBehaviour:
   PrimaryClip: {fileID: -3826477286391756377, guid: 83d98935bcd25d346b775b96b3e53f8e, type: 3}
   BeforeClips: []
   AfterClips: []
-  Looping: 1
+  Looping: 0
   IgnoreEdges: 0
   ExtrapolateTrajectory: 1
-  FlattenTrajectory: 1
+  FlattenTrajectory: 0
   RuntimeSplicing: 0
   GlobalTags: 8
   GlobalFavourTags: 0
@@ -6139,10 +6284,10 @@ MonoBehaviour:
   PrimaryClip: {fileID: 4271430547855427088, guid: 42985d23f0f5bae4788d2e7a683056c7, type: 3}
   BeforeClips: []
   AfterClips: []
-  Looping: 1
+  Looping: 0
   IgnoreEdges: 0
   ExtrapolateTrajectory: 1
-  FlattenTrajectory: 1
+  FlattenTrajectory: 0
   RuntimeSplicing: 0
   GlobalTags: 8
   GlobalFavourTags: 0
@@ -7093,10 +7238,10 @@ MonoBehaviour:
   PrimaryClip: {fileID: 1116818929085324444, guid: 5f8964489ab816d4db6da07b3287afb7, type: 3}
   BeforeClips: []
   AfterClips: []
-  Looping: 1
+  Looping: 0
   IgnoreEdges: 0
   ExtrapolateTrajectory: 1
-  FlattenTrajectory: 1
+  FlattenTrajectory: 0
   RuntimeSplicing: 0
   GlobalTags: 8
   GlobalFavourTags: 0
@@ -7363,10 +7508,10 @@ MonoBehaviour:
   PrimaryClip: {fileID: -4687474459327622374, guid: 35838536ef986654194125010879202c, type: 3}
   BeforeClips: []
   AfterClips: []
-  Looping: 1
+  Looping: 0
   IgnoreEdges: 0
   ExtrapolateTrajectory: 1
-  FlattenTrajectory: 1
+  FlattenTrajectory: 0
   RuntimeSplicing: 0
   GlobalTags: 8
   GlobalFavourTags: 0
@@ -8448,10 +8593,10 @@ MonoBehaviour:
   PrimaryClip: {fileID: 904551039516720066, guid: c3f0e1c8a2843a74cb38c5dd9bf630dc, type: 3}
   BeforeClips: []
   AfterClips: []
-  Looping: 1
+  Looping: 0
   IgnoreEdges: 0
   ExtrapolateTrajectory: 1
-  FlattenTrajectory: 1
+  FlattenTrajectory: 0
   RuntimeSplicing: 0
   GlobalTags: 8
   GlobalFavourTags: 0
