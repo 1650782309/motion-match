@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: VaultDef_VaultOverShort_FromStanding
   m_EditorClassIdentifier: 
   EventDefinition: {fileID: 11400000, guid: 8adca9229e2acd2448a13bd2a4cf59d2, type: 2}
-  MinRise: 0.8
-  MaxRise: 1.8
+  MinRise: 0.4
+  MaxRise: 2
   MinDepth: 0
-  MaxDepth: 0.3
+  MaxDepth: 1.5
   MinDrop: 0.5
   MaxDrop: 2
   DisableCollision: 0
   LineUpWithObstacle: 1
   VaultType: 2
   OffsetMethod_Contact1: 2
-  Offset_Contact1: {x: 0, y: -0.025, z: 0.5}
+  Offset_Contact1: {x: 0, y: 0, z: 0.1}
   OffsetMethod_Contact2: 1
-  Offset_Contact2: {x: 0, y: 0, z: 1}
+  Offset_Contact2: {x: 0, y: 0, z: 0.5}

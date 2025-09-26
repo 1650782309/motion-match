@@ -338,6 +338,9 @@ public class VaultDectector_User : MonoBehaviour
                 if (vaultDef == null)
                     return;
 
+                Debug.Log("vaultDef: " + vaultDef.VaultType);
+                Debug.Log("VaultName: " + vaultDef.EventDefinition.EventName);
+
                 float facingAngle = transform.rotation.eulerAngles.y; //获取角色当前朝向
 
                 if (vaultDef.LineUpWithObstacle) //如果攀爬定义需要与障碍物对齐，则调整朝向
