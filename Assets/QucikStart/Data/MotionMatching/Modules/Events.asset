@@ -15,3 +15,11 @@ MonoBehaviour:
   m_eventNames:
   - Slide
   - VaultOver_Long
+  - VaultOver_Short
+  - VaultUp
+  - VaultOff
+  - VaultUpHigh
+  - VaultOffHigh
+  - VaultOffMed
+  - Jump
+  - VaultUpMed

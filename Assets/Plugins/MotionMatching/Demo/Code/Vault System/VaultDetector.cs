@@ -33,11 +33,6 @@ namespace MxMGameplay
         [SerializeField]
         public float m_maxApproachAngle = 60f;
 
-        [Header("Debug可视化")]
-        [SerializeField] private bool m_showDebugGizmos = true;
-        [SerializeField] private Color m_forwardRayColor = Color.red;
-        [SerializeField] private Color m_verticalRayColor = Color.blue;
-        [SerializeField] private Color m_hitPointColor = Color.green;
 
         private MxMAnimator m_mxmAnimator;
         private MxMRootMotionApplicator m_rootMotionApplicator;
@@ -57,13 +52,6 @@ namespace MxMGameplay
 
         private bool m_isVaulting;
 
-        // Debug 可视化变量
-        private Vector3 m_debugForwardRayStart;
-        private Vector3 m_debugForwardRayEnd;
-        private Vector3 m_debugVerticalRayStart;
-        private Vector3 m_debugVerticalRayEnd;
-        private Vector3 m_debugHitPoint;
-        private bool m_debugHasHit = false;
 
         public float Advance { get; set; }
         public float DesiredAdvance { get; set; }
@@ -163,12 +151,7 @@ namespace MxMGameplay
 
             if (!CanVault())
             {
-                m_debugHasHit = false;
                 return;
-            }
-            else
-            {
-                Debug.Log("VaultDetector: 检测条件满足");
             }
 
 
@@ -182,52 +165,29 @@ namespace MxMGameplay
                 m_curConfig.DetectProbeRadius + m_minVaultRise,
                 charPos.z);
 
-            // 保存 Debug 信息
-            m_debugForwardRayStart = probeStart;
-            m_debugForwardRayEnd = probeStart + charForward * Advance;
 
             Ray forwardRay = new Ray(probeStart, charForward);
 
             if (Physics.SphereCast(forwardRay, m_curConfig.DetectProbeRadius, out RaycastHit forwardRayHit,
                    Advance, m_layerMask, QueryTriggerInteraction.Ignore))
             {
-                if (m_showDebugGizmos)
-                {
-                    Debug.Log($"前方射线检测成功，距离: {forwardRayHit.distance:F2}");
-                    Debug.Log($"前方命中点: {forwardRayHit.point}");
-                }
-
                 //If we hit something closer than the current advance, then we shorten the advance since we want the
                 //first downward sphere case to hit the edge.
                 if (forwardRayHit.distance < Advance)
                 {
                     Advance = forwardRayHit.distance;
-                    if (m_showDebugGizmos) Debug.Log($"调整前进距离为: {Advance:F2}");
                 }
 
                 Vector3 obstacleOrient = Vector3.ProjectOnPlane(forwardRayHit.normal, Vector3.up) * -1f;
 
                 approachAngle = Vector3.SignedAngle(transform.forward, obstacleOrient, Vector3.up);
 
-                if (m_showDebugGizmos)
-                {
-                    Debug.Log($"接近角度: {approachAngle:F2}, 最大允许角度: {m_maxApproachAngle:F2}");
-                }
-
                 //If we encounter an obstacle but at an angle above our max, we don't want to vault so return here.
                 //QUESTION: What if the actual vault point (i.e. at the top of the obstacle is within the correct angle?
                 if (Mathf.Abs(approachAngle) > m_maxApproachAngle)
                 {
-                    if (m_showDebugGizmos) Debug.Log($"❌ 接近角度太大，取消攀爬: {Mathf.Abs(approachAngle):F2} > {m_maxApproachAngle:F2}");
                     return;
                 }
-
-                if (m_showDebugGizmos) Debug.Log("✅ 前方检测通过，开始垂直检测");
-            }
-            else
-            {
-                if (m_showDebugGizmos) Debug.Log("❌ 前方射线检测失败，没有检测到障碍物");
-                return; // 前方检测失败，直接返回
             }
 
             //Next we fire a ray vertically downward from the maximum vault rise to the maximum vault drop
@@ -235,54 +195,29 @@ namespace MxMGameplay
             probeStart = transform.TransformPoint(new Vector3(0f, m_maxVaultRise, Advance));
             // probeStart.y += m_maxVaultRise;
 
-            if (m_showDebugGizmos)
-            {
-                Debug.Log($"准备垂直射线检测，起点: {probeStart}");
-                Debug.Log($"检测距离: {m_maxVaultRise + m_maxVaultDrop:F2}");
-                Debug.Log($"Layer Mask: {m_layerMask.value}");
-            }
 
-            // 保存垂直射线 Debug 信息
-            m_debugVerticalRayStart = probeStart;
-            m_debugVerticalRayEnd = probeStart + Vector3.down * (m_maxVaultRise + m_maxVaultDrop);
 
             Ray probeRay = new Ray(probeStart, Vector3.down);
             if (Physics.SphereCast(probeRay, m_curConfig.DetectProbeRadius, out RaycastHit probeHit, m_maxVaultRise + m_maxVaultDrop,
                     m_layerMask, QueryTriggerInteraction.Ignore))
             {
-                // 保存命中点信息
-                m_debugHitPoint = probeHit.point;
-                m_debugHasHit = true;
-
-                if (m_showDebugGizmos)
-                {
-                    Debug.Log($"垂直射线检测成功，距离: {probeHit.distance:F2}");
-                    Debug.Log($"命中点: {probeHit.point}");
-                    Debug.Log($"最大攀爬高度: {m_maxVaultRise:F2}, 最小攀爬高度: {m_minVaultRise:F2}");
-                }
 
                 //Too high -> cancel the vault
                 if (probeHit.distance < Mathf.Epsilon)
                 {
-                    if (m_showDebugGizmos) Debug.Log("❌ 障碍物太高，取消攀爬");
                     return;
                 }
 
                 //A 'vault over' or 'vault up' may have been detected if the probe distance is between the minimum and maximum vault rise
                 if (probeHit.distance < (m_maxVaultRise - m_minVaultRise))
                 {
-                    if (m_showDebugGizmos) Debug.Log($"✅ 检测到可攀爬障碍物，距离: {probeHit.distance:F2}");
-
                     //A vault may have been detected
 
                     //Check if there is enough height to fit the character
                     if (!CheckCharacterHeightFit(probeHit.point, charForward))
                     {
-                        if (m_showDebugGizmos) Debug.Log("❌ 角色高度检查失败，空间不足");
                         return;
                     }
-
-                    if (m_showDebugGizmos) Debug.Log("✅ 角色高度检查通过，开始形状分析");
 
                     //Calculate the hit offset. This is the offset on a horizontal 2D plane between the start of the ray and the hit point
 
@@ -290,15 +225,8 @@ namespace MxMGameplay
                     VaultableProfile vaultable;
                     VaultShapeAnalysis(in probeHit, out vaultable);
 
-                    if (m_showDebugGizmos)
-                    {
-                        Debug.Log($"形状分析结果: {vaultable.VaultType}");
-                        Debug.Log($"分析参数 - Rise: {vaultable.Rise:F2}, Depth: {vaultable.Depth:F2}, Drop: {vaultable.Drop:F2}");
-                    }
-
                     if (vaultable.VaultType == EVaultType.Invalid)
                     {
-                        if (m_showDebugGizmos) Debug.Log("❌ 形状分析失败，障碍物类型无效");
                         return;
                     }
 
@@ -649,28 +577,11 @@ namespace MxMGameplay
 
         private VaultDefinition ComputeBestVault(ref VaultableProfile a_vaultable)
         {
-            if (m_showDebugGizmos)
-            {
-                Debug.Log($"=== 开始匹配攀爬定义 ===");
-                Debug.Log($"障碍物类型: {a_vaultable.VaultType}");
-                Debug.Log($"障碍物参数 - Rise: {a_vaultable.Rise:F2}, Depth: {a_vaultable.Depth:F2}, Drop: {a_vaultable.Drop:F2}");
-                Debug.Log($"可用定义数量: {m_vaultDefinitions.Length}");
-            }
 
             foreach (VaultDefinition vaultDef in m_vaultDefinitions)
             {
-                if (m_showDebugGizmos)
-                {
-                    Debug.Log($"检查定义: {vaultDef.VaultType}");
-                    Debug.Log($"  参数范围 - MinRise: {vaultDef.MinRise:F2}, MaxRise: {vaultDef.MaxRise:F2}");
-                    Debug.Log($"  深度范围 - MinDepth: {vaultDef.MinDepth:F2}, MaxDepth: {vaultDef.MaxDepth:F2}");
-                    Debug.Log($"  掉落范围 - MinDrop: {vaultDef.MinDrop:F2}, MaxDrop: {vaultDef.MaxDrop:F2}");
-                }
-
                 if (vaultDef.VaultType == a_vaultable.VaultType)
                 {
-                    if (m_showDebugGizmos)
-                        Debug.Log($"  类型匹配: {vaultDef.VaultType}");
 
                     switch (vaultDef.VaultType)
                     {
@@ -678,122 +589,55 @@ namespace MxMGameplay
                             {
                                 if (a_vaultable.Depth < vaultDef.MinDepth)
                                 {
-                                    if (m_showDebugGizmos) Debug.Log($"  深度不足: {a_vaultable.Depth:F2} < {vaultDef.MinDepth:F2}");
                                     continue;
                                 }
 
                                 if (a_vaultable.Rise < vaultDef.MinRise || a_vaultable.Rise > vaultDef.MaxRise)
                                 {
-                                    if (m_showDebugGizmos) Debug.Log($"  高度不匹配: {a_vaultable.Rise:F2} 不在 [{vaultDef.MinRise:F2}, {vaultDef.MaxRise:F2}] 范围内");
                                     continue;
                                 }
-
-                                if (m_showDebugGizmos) Debug.Log($"  ✅ StepUp 定义匹配成功!");
                             }
                             break;
                         case EVaultType.StepOver:
                             {
                                 if (a_vaultable.Depth < vaultDef.MinDepth || a_vaultable.Depth > vaultDef.MaxDepth)
                                 {
-                                    if (m_showDebugGizmos) Debug.Log($"  深度不匹配: {a_vaultable.Depth:F2} 不在 [{vaultDef.MinDepth:F2}, {vaultDef.MaxDepth:F2}] 范围内");
                                     continue;
                                 }
 
                                 if (a_vaultable.Rise < vaultDef.MinRise || a_vaultable.Rise > vaultDef.MaxRise)
                                 {
-                                    if (m_showDebugGizmos) Debug.Log($"  高度不匹配: {a_vaultable.Rise:F2} 不在 [{vaultDef.MinRise:F2}, {vaultDef.MaxRise:F2}] 范围内");
                                     continue;
                                 }
 
                                 if (a_vaultable.Drop < vaultDef.MinDrop || a_vaultable.Drop > vaultDef.MaxDrop)
                                 {
-                                    if (m_showDebugGizmos) Debug.Log($"  掉落高度不匹配: {a_vaultable.Drop:F2} 不在 [{vaultDef.MinDrop:F2}, {vaultDef.MaxDrop:F2}] 范围内");
                                     continue;
                                 }
-
-                                if (m_showDebugGizmos) Debug.Log($"  ✅ StepOver 定义匹配成功!");
                             }
                             break;
                         case EVaultType.StepOff:
                             {
                                 if (a_vaultable.Depth < vaultDef.MinDepth)
                                 {
-                                    if (m_showDebugGizmos) Debug.Log($"  深度不足: {a_vaultable.Depth:F2} < {vaultDef.MinDepth:F2}");
                                     continue;
                                 }
 
                                 if (a_vaultable.Drop < vaultDef.MinDrop || a_vaultable.Drop > vaultDef.MaxDrop)
                                 {
-                                    if (m_showDebugGizmos) Debug.Log($"  掉落高度不匹配: {a_vaultable.Drop:F2} 不在 [{vaultDef.MinDrop:F2}, {vaultDef.MaxDrop:F2}] 范围内");
                                     continue;
                                 }
-
-                                if (m_showDebugGizmos) Debug.Log($"  ✅ StepOff 定义匹配成功!");
                             }
                             break;
                     }
 
-                    if (m_showDebugGizmos)
-                        Debug.Log($"🎯 找到匹配的攀爬定义: {vaultDef.VaultType}");
-
                     return vaultDef;
                 }
-                else
-                {
-                    if (m_showDebugGizmos)
-                        Debug.Log($"  类型不匹配: 需要 {a_vaultable.VaultType}, 当前是 {vaultDef.VaultType}");
-                }
             }
-
-            if (m_showDebugGizmos)
-                Debug.Log("❌ 没有找到匹配的攀爬定义");
 
             return null;
         }
 
-        //============================================================================================
-        /**
-        *  @brief 绘制可视化调试信息
-        *         
-        *********************************************************************************************/
-        private void OnDrawGizmos()
-        {
-            if (!m_showDebugGizmos) return;
 
-            // 绘制前方射线
-            Gizmos.color = m_forwardRayColor;
-            Gizmos.DrawLine(m_debugForwardRayStart, m_debugForwardRayEnd);
-            Gizmos.DrawWireSphere(m_debugForwardRayStart, m_curConfig?.DetectProbeRadius ?? 0.1f);
-
-            // 绘制垂直射线
-            Gizmos.color = m_verticalRayColor;
-            Gizmos.DrawLine(m_debugVerticalRayStart, m_debugVerticalRayEnd);
-            Gizmos.DrawWireSphere(m_debugVerticalRayStart, m_curConfig?.DetectProbeRadius ?? 0.1f);
-
-            // 绘制命中点
-            if (m_debugHasHit)
-            {
-                Gizmos.color = m_hitPointColor;
-                Gizmos.DrawWireSphere(m_debugHitPoint, 0.2f);
-                Gizmos.DrawWireCube(m_debugHitPoint, Vector3.one * 0.1f);
-            }
-
-            // 绘制角色位置和朝向
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, 0.5f);
-            Gizmos.DrawRay(transform.position, transform.forward * 2f);
-
-            // 绘制前进距离
-            Gizmos.color = Color.cyan;
-            Vector3 advanceEnd = transform.position + transform.forward * Advance;
-            Gizmos.DrawLine(transform.position, advanceEnd);
-            Gizmos.DrawWireSphere(advanceEnd, 0.1f);
-
-            // 绘制最小前进距离
-            Gizmos.color = Color.magenta;
-            Vector3 minAdvanceEnd = transform.position + transform.forward * m_minAdvance;
-            Gizmos.DrawLine(transform.position, minAdvanceEnd);
-            Gizmos.DrawWireSphere(minAdvanceEnd, 0.05f);
-        }
     }
 }

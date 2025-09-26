@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77dbfe42b36807c4bb30fd46085711a1, type: 3}
   m_Name: VaultDetectionConfig
   m_EditorClassIdentifier: 
-  ConfigName: VaultDetectionCfg
+  ConfigName: TestConfig
   DetectProbeRadius: 0.5
   DetectProbeAdvanceTime: 0.35
   ShapeAnalysisSpacing: 0.2
